@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/', [TestController::class, 'index']);
+Route::post('/todos', [TestController::class, 'store']);
+Route::patch('/todos/update', [TestController::class, 'update']);
+Route::delete('/todos/delete', [TestController::class, 'destroy']);
