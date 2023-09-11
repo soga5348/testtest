@@ -14,9 +14,18 @@ use App\Http\Controllers\TestController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/', [TestController::class, 'index']);
+require __DIR__.'/auth.php';
+
+Route::get('/Login', [TestController::class, 'login']);
+Route::get('/index', [TestController::class, 'index']);
 Route::post('/todos', [TestController::class, 'store']);
 Route::patch('/todos/update', [TestController::class, 'update']);
 Route::delete('/todos/delete', [TestController::class, 'destroy']);

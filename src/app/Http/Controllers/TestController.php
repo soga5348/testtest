@@ -35,4 +35,9 @@ public function destroy(Request $request)
     Todo::find($request->id)->delete();
     return redirect('/')->with('message', 'Todoを削除しました');
 }
+
+public function login()
+       {
+        return view('login');
+       }
 }

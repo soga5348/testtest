@@ -38,13 +38,14 @@
     }
 
     .title{
-        width:35%;
+        width:50%;
+        font-size:16px;
         border: 2px solid blue;
     }
 
     .input{
         font-size:16px;
-        width:35%;
+        width:50%;
         height:200px;
         border: 2px solid blue;
     }
@@ -62,6 +63,14 @@
 </style>
 </head>
 <body>
+    @section('content')
+    @if (Auth::check())
+      <p>ログイン中ユーザー: {{$user->name . ' メール' . $user->email . ''}}</p>
+    @else
+      <p>ログインしてください。（<a href="/login">ログイン</a>｜
+      <a href="/register">登録</a>）</p>
+    @endif
+
     <h1>相談窓口</h1>
     <form class="create-form" action="/todos" method="post">
         @csrf
