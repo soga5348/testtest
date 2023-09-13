@@ -17,7 +17,9 @@ class CreateTodosTable extends Migration
             $table->id();
             $table->string('content', 255);
             $table->timestamps();
-            $table->string('title', 255); 
+            $table->string('title', 255);
+            $table->unsignedBigInteger('user_id'); // ユーザーを示す外部キー
+            $table->foreign('user_id')->references('id')->on('users'); // users テーブルの id カラムを参照
         });
     }
 

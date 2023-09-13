@@ -24,8 +24,11 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/Login', [TestController::class, 'login']);
-Route::get('/index', [TestController::class, 'index']);
-Route::post('/todos', [TestController::class, 'store']);
-Route::patch('/todos/update', [TestController::class, 'update']);
-Route::delete('/todos/delete', [TestController::class, 'destroy']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/index', [TestController::class, 'index']);
+    Route::post('/todos', [TestController::class, 'store']);
+    Route::patch('/todos/update', [TestController::class, 'update']);
+    Route::delete('/todos/delete', [TestController::class, 'destroy']);
+});
+

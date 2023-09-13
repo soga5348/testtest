@@ -65,7 +65,7 @@
 <body>
     @section('content')
     @if (Auth::check())
-      <p>ログイン中ユーザー: {{$user->name . ' メール' . $user->email . ''}}</p>
+      <p>ログイン中ユーザー: {{ Auth::user()->name }}</p>
     @else
       <p>ログインしてください。（<a href="/login">ログイン</a>｜
       <a href="/register">登録</a>）</p>
@@ -74,6 +74,7 @@
     <h1>相談窓口</h1>
     <form class="create-form" action="/todos" method="post">
         @csrf
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
         <p>↓相談の内容を入力してください</p>
         <h4>タイトル</h4><input class="title" type="text" name="title">
         <h4>本文</h4><textarea class="input" type="text" name="content"></textarea>
@@ -96,7 +97,7 @@
                 <p>{{ $todo['id'] }}</p>
                 <input class="title2" type="text" name="title" value="{{ $todo['title'] }}"><br>
                 <textarea class="input2" type="text" name="content">{{ $todo['content'] }}</textarea>
-                
+                <p>投稿主: {{ $todo->user->name }}</p>
                
                 <input type="hidden" name="id" value="{{ $todo['id'] }}">
             </div>

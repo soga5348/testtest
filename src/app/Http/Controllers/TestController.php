@@ -16,9 +16,9 @@ class TestController extends Controller
        public function store(Request $request)
        {
         $todos = Todo::all();
-        $todoData = $request->only(['title', 'content']); 
+        $todoData = $request->only(['title', 'content','user_id']); 
         Todo::create($todoData);                     # データベースにデータを追加する記述
-        return redirect('/');
+        return redirect('/index');
        }
        
 
