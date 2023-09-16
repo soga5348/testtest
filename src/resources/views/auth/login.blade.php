@@ -1,5 +1,3 @@
-
-
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -39,5 +37,8 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+            <p>⇩⇩⇩</p>
+            <a href="/register">新規アカウント作成画面へ</a>
+            
         </form>
     
